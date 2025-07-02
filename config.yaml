@@ -186,7 +186,9 @@ languages:
         - name: github
           url: "https://github.com/AsterZephyr"
         - name: email
-          url: "mailto:your-email@example.com"
+          url: "mailto:hxz2046084122@outlook.com"
+        - name: x
+          url: "https://x.com/maribeth10770"
 
       analytics:
         google:
@@ -213,7 +215,7 @@ languages:
         keys: ["title", "permalink", "summary", "content"]
 
       contact:
-        email: "your-email@example.com"
+        email: "hxz2046084122@outlook.com"
 
     # ──────────────────────────────────────────────────────────────────────────
     # Navigation Menu
@@ -322,7 +324,9 @@ languages:
         - name: github
           url: "https://github.com/AsterZephyr"
         - name: email
-          url: "mailto:your-email@example.com"
+          url: "mailto:hxz2046084122@outlook.com"
+        - name: x
+          url: "https://x.com/maribeth10770"
         
 
       analytics:
@@ -350,7 +354,7 @@ languages:
         keys: ["title", "permalink", "summary", "content"]
 
       contact:
-        email: "your-email@example.com"
+        email: "hxz2046084122@outlook.com"
 
     # ──────────────────────────────────────────────────────────────────────────
     # Navigation Menu
