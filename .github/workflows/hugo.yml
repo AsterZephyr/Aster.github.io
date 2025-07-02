@@ -1,0 +1,33 @@
+name: Hugo CI/CD
+
+on: # Trigger the workflow on push to the main branch
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest # Use a fresh Ubuntu environment
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          submodules: true # Checkout submodules (your theme)
+          fetch-depth: 0 # Fetch all history for git info
+
+      - name: Setup Hugo
+        uses: peaceiris/actions-hugo@v3
+        with:
+          hugo-version: 'latest' # Use the latest Hugo version
+          extended: true # Required for some themes (like Stack)
+
+      - name: Build Hugo site
+        run: hugo --minify # Build the site and minify output
+
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./public # The directory Hugo builds to
+          force_orphan: true # Overwrite existing gh-pages branch
