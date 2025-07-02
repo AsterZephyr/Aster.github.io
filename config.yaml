@@ -1,0 +1,171 @@
+# Base Configuration
+baseURL: "https://asterzephyr.github.io/"
+title: "Aster's Technical Notes"
+pagination:
+  pagerSize: 5
+theme: ["PaperMod"]
+
+# Default Language Code
+languageCode: "en-us"
+
+publishDir: "public"
+enableGitInfo: true
+enableRobotsTXT: true
+buildDrafts: false
+buildFuture: false
+buildExpired: false
+
+minify:
+  disableXML: true
+  minifyOutput: true
+
+# Disable RSS
+disableKinds:
+  - RSS
+
+outputs:
+  home:
+    - HTML
+    - RSS
+    - JSON # necessary for search
+
+# math setting
+markup:
+  tableOfContents:
+    endLevel: 4
+    ordered: false
+    startLevel: 2
+  goldmark:
+    duplicateResourceFiles: false
+    extensions:
+      cjk:
+        eastAsianLineBreaks: false
+        eastAsianLineBreaksStyle: simple
+        enable: false
+        escapedSpace: false
+      definitionList: true
+      footnote: true
+      linkify: true
+      linkifyProtocol: https
+      passthrough:
+        delimiters:
+          block:
+            - - \[
+              - \]
+            - - $$
+              - $$
+          inline:
+            - - \(
+              - \)
+        enable: true
+      strikethrough: true
+      table: true
+      taskList: true
+    parser:
+      attribute:
+        block: false
+        title: true
+      autoHeadingID: true
+      autoHeadingIDType: github
+      wrapStandAloneImageWithinParagraph: true
+    renderer:
+      hardWraps: false
+      unsafe: false
+      xhtml: false
+
+# ──────────────────────────────────────────────────────────────────────────────
+# Single Language Configuration
+# ──────────────────────────────────────────────────────────────────────────────
+
+# ──────────────────────────────────────────────────────────────────────────
+# PaperMod Parameters
+# ──────────────────────────────────────────────────────────────────────────
+params:
+  math: true
+  env: production
+  title: "Aster's Technical Notes"
+  description: "Technical blog focused on distributed systems, databases, networking, and backend architecture"
+  keywords: [Blog, Backend, Distributed Systems, Database, WebRTC, Technical]
+
+  author: "Aster"
+
+  DateFormat: "2006-01-02"
+  ShowLastMod: true
+  ShowLastModInList: true
+
+  defaultTheme: auto
+  disableThemeToggle: false
+
+  ShowReadingTime: true
+  ShowWordCount: true
+  ShowShareButtons: true
+  ShowPostNavLinks: true
+  ShowBreadCrumbs: true
+  ShowCodeCopyButtons: true
+  ShowRssButtonInSectionTermList: true
+  UseHugoToc: true
+  showtoc: true
+  tocopen: false
+  disableSpecial1stPost: false
+  disableScrollToTop: false
+  comments: false
+  hidemeta: false
+  hideSummary: false
+
+  label:
+    text: "Home"
+    iconHeight: 35
+
+  profileMode:
+    enabled: false
+
+  homeInfoParams:
+    Title: "👋 Welcome to Aster's Technical Blog"
+    Content: "Hi, I'm Aster, a backend engineer passionate about distributed systems, database architecture, and real-time communication technologies. This blog documents my journey through complex technical challenges and solutions in areas like WebRTC, distributed computing, high-performance systems, and modern backend architectures. Here you'll find in-depth technical analysis, system design insights, and practical solutions to real-world engineering problems."
+
+  socialIcons:
+    - name: github
+      url: "https://github.com/AsterZephyr"
+    - name: email
+      url: "mailto:your-email@example.com"
+
+  cover:
+    hidden: true
+    hiddenInList: true
+    hiddenInSingle: true
+
+  # Enable Fuse.js Search
+  fuseOpts:
+    isCaseSensitive: false
+    shouldSort: true
+    location: 0
+    distance: 1000
+    threshold: 0.4
+    minMatchCharLength: 0
+    limit: 10
+    keys: ["title", "permalink", "summary", "content"]
+
+# ──────────────────────────────────────────────────────────────────────────
+# Navigation Menu
+# ──────────────────────────────────────────────────────────────────────────
+menu:
+  main:
+    - name: Archive
+      url: /archives/
+      weight: 5
+    - name: Search
+      url: /search/
+      weight: 10
+    - identifier: tags
+      name: Tags
+      url: /tags/
+      weight: 20
+
+enableInlineShortcodes: true
+enableRobotsTXT: true
+buildDrafts: false
+buildFuture: false
+buildExpired: false
+enableEmoji: true
+pygmentsUseClasses: true
+mainsections: ["posts"]
