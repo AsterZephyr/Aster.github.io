@@ -1,5 +1,5 @@
 # Base Configuration
-baseURL: "https://asterzephyr.github.io/Aster.github.io/"
+baseURL: "https://asterzephyr.github.io/"
 title: "Aster's Technical Blog"
 pagination:
   pagerSize: 5
