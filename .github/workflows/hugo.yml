@@ -8,6 +8,9 @@ on: # Trigger the workflow on push to the main branch
 jobs:
   deploy:
     runs-on: ubuntu-latest # Use a fresh Ubuntu environment
+    permissions:
+      contents: write
+      pages: write
 
     steps:
       - name: Checkout code
