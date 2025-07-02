@@ -23,7 +23,7 @@ process_markdown_files() {
         title=$(echo "$filename" | sed 's/ [0-9a-f]*\.md$//' | head -c 50)
         
         # 生成Hugo友好的文件名
-        slug=$(echo "$title" | sed 's/[^a-zA-Z0-9\u4e00-\u9fa5]/-/g' | sed 's/--*/-/g' | sed 's/^-\|-$//g')
+        slug=$(echo "$title" | sed 's/[^a-zA-Z0-9]/-/g' | sed 's/--*/-/g' | sed 's/^-\|-$//g' | tr '[:upper:]' '[:lower:]')
         output_file="$ZH_POSTS_DIR/${slug}.md"
         
         # 检查文件是否已存在
@@ -44,9 +44,8 @@ process_markdown_files() {
 title: "$title"
 date: $file_date
 draft: false
-tags: ["技术笔记", "Notion导入"]
+tags: ["技术笔记"]
 author: "Aster"
-description: "从Notion导入的技术文章"
 ---
 
 $content
