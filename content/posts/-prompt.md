@@ -1,10 +1,10 @@
 ---
 title: "如何写好prompt"
-date: 2025-07-02T14:25:28Z
+date: 2025-07-03T18:00:00Z
 draft: false
-tags: ["分布式系统", "系统架构", "性能优化", "高并发"]
+tags: ["AI", "大语言模型", "Prompt工程", "机器学习"]
 author: "Aster"
-description: "Created: 2025年6月1日 01:07..."
+description: "深入探讨生产环境中Prompt工程的最佳实践，从基础概念到高级技巧的完整指南。"
 ---
 
 # 如何写好prompt
