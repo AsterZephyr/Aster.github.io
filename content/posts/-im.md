@@ -1,6 +1,6 @@
 ---
 title: "高可用IM"
-date: 2025-07-03T17:00:00Z
+date: 2025-07-03T04:00:00Z
 draft: false
 tags: ["IM系统", "实时通信", "分布式系统", "系统架构", "高可用"]
 author: "Aster"

@@ -1,6 +1,6 @@
 ---
 title: "如何写好prompt"
-date: 2025-07-03T18:00:00Z
+date: 2025-07-03T05:00:00Z
 draft: false
 tags: ["AI", "大语言模型", "Prompt工程", "机器学习"]
 author: "Aster"
