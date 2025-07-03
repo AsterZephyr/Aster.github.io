@@ -1,12 +1,14 @@
 # Base Configuration
 baseURL: "https://asterzephyr.github.io/"
-title: "Aster's Technical Blog"
+title: "Aster 的技术博客"
 pagination:
   pagerSize: 5
 theme: ["PaperMod"]
 
 # Default Language Code
-languageCode: "en-us"
+languageCode: "zh-cn"
+defaultContentLanguage: "zh"
+hasCJKLanguage: true
 
 publishDir: "public"
 enableGitInfo: true            # <-- 新增：让 .Lastmod 跟随 Git 最近一次 commit
@@ -106,276 +108,7 @@ markup:
       unsafe: false
       xhtml: false
 
-# ──────────────────────────────────────────────────────────────────────────────
-# Multilingual Configuration
-# ──────────────────────────────────────────────────────────────────────────────
-languages:
-  zh:
-    languageName: "简体中文"
-    weight: 1
-    contentDir: "content/zh"
-    languageCode: "zh-cn"
-    title: "Aster 的技术博客"
 
-    # This will make .Summary and .WordCount behave correctly for CJK languages.
-    hasCJKLanguage: true
-
-    # ──────────────────────────────────────────────────────────────────────────
-    # PaperMod Parameters
-    # ──────────────────────────────────────────────────────────────────────────
-    params:
-      math: true
-      env: production
-      title: "Aster 的技术博客"
-      description: "专注于分布式系统、数据库、网络和后端架构的技术博客"
-      keywords: [博客, 后端, 技术, 分布式系统]
-
-      author: "Aster"
-
-      images: ["<opengraph、twitter-cards 图片的链接或路径>"]
-
-      DateFormat: "2006-01-02"
-      ShowLastMod: true        # <-- 新增：文章页显示「最后更新」
-      ShowLastModInList: true  # <-- 新增：列表页也显示更新时间
-
-      defaultTheme: auto
-      disableThemeToggle: false
-
-      ShowReadingTime: true
-      ShowWordCount: true
-      ShowShareButtons: true
-      ShowPostNavLinks: true
-      ShowBreadCrumbs: true
-      ShowCodeCopyButtons: true
-      ShowRssButtonInSectionTermList: true
-      UseHugoToc: true
-      showtoc: true
-      tocopen: false
-      disableSpecial1stPost: false
-      disableScrollToTop: false
-      comments: true
-      hidemeta: false
-      hideSummary: false
-
-      assets:
-        favicon: "<链接 / 绝对URL>"
-        favicon16x16: "<链接 / 绝对URL>"
-        favicon32x32: "<链接 / 绝对URL>"
-        apple_touch_icon: "<链接 / 绝对URL>"
-        safari_pinned_tab: "<链接 / 绝对URL>"
-
-      label:
-        text: "首页"
-        icon: /apple-touch-icon.png
-        iconHeight: 35
-
-      profileMode:
-        enabled: false
-        title: "示例网站"
-        subtitle: "这是副标题"
-        imageUrl: "<图片位置>"
-        imageWidth: 120
-        imageHeight: 120
-        imageTitle: "我的图片"
-        buttons:
-          - name: "帖子"
-            url: "posts"
-          - name: "标签"
-            url: "tags"
-
-      homeInfoParams:
-        Title: "👋 欢迎访问我的博客"
-        Content: "你好，我是Aster，一名专注于分布式系统、数据库架构和实时通信技术的后端工程师。这个博客记录了我在复杂技术挑战和解决方案方面的旅程，涵盖WebRTC、分布式计算、高性能系统和现代后端架构等领域。在这里你会找到深入的技术分析、系统设计见解以及实际工程问题的解决方案。"
-
-      socialIcons:
-        - name: github
-          url: "https://github.com/AsterZephyr"
-        - name: email
-          url: "mailto:hxz2046084122@outlook.com"
-        - name: x
-          url: "https://x.com/maribeth10770"
-        
-
-      analytics:
-        google:
-          SiteVerificationTag: "XYZabc"
-        bing:
-          SiteVerificationTag: "XYZabc"
-        yandex:
-          SiteVerificationTag: "XYZabc"
-
-      cover:
-        hidden: true
-        hiddenInList: true
-        hiddenInSingle: true
-
-
-      fuseOpts:
-        isCaseSensitive: false
-        shouldSort: true
-        location: 0
-        distance: 1000
-        threshold: 0.4
-        minMatchCharLength: 0
-        limit: 10
-        keys: ["title", "permalink", "summary", "content"]
-
-      contact:
-        email: "hxz2046084122@outlook.com"
-
-    # ──────────────────────────────────────────────────────────────────────────
-    # Navigation Menu
-    # ──────────────────────────────────────────────────────────────────────────
-    menu:
-      main:
-        - name: 归档
-          url: /archives/
-          weight: 5
-        - name: 搜索
-          url: /zh/search/
-          weight: 10
-        - identifier: tags
-          name: 标签
-          url: /tags/
-          weight: 20
-
-  en:
-    languageName: "English"
-    weight: 2
-
-    # ──────────────────────────────────────────────────────────────────────────
-    # PaperMod Parameters
-    # ──────────────────────────────────────────────────────────────────────────
-    params:
-      math: true
-      env: production
-      title: "Aster's Technical Blog"
-      description: "Technical blog focused on distributed systems, databases, networking, and backend architecture"
-      keywords: [Blog, Backend, Technical, Distributed Systems]
-
-      author: "Aster"
-
-      images: ["<link or path of image for opengraph, twitter-cards>"]
-
-      DateFormat: "2006-01-02"
-      ShowLastMod: true        # <-- 新增：文章页显示「最后更新」
-      ShowLastModInList: true  # <-- 新增：列表页也显示更新时间
-
-      defaultTheme: auto
-      disableThemeToggle: false
-
-      ShowReadingTime: true
-      ShowWordCount: true
-      ShowShareButtons: true
-      ShowPostNavLinks: true
-      ShowBreadCrumbs: true
-      ShowCodeCopyButtons: true
-      ShowRssButtonInSectionTermList: true
-      UseHugoToc: true
-      showtoc: true
-      tocopen: false
-      disableSpecial1stPost: false
-      disableScrollToTop: false
-      comments: true
-      hidemeta: false
-      hideSummary: false
-
-      assets:
-        favicon: "<link / abs url>"
-        favicon16x16: "<link / abs url>"
-        favicon32x32: "<link / abs url>"
-        apple_touch_icon: "<link / abs url>"
-        safari_pinned_tab: "<link / abs url>"
-
-      label:
-        text: "Home"
-        icon: /apple-touch-icon.png
-        iconHeight: 35
-
-      profileMode:
-        enabled: false
-        title: "ExampleSite"
-        subtitle: "This is subtitle"
-        imageUrl: "<img location>"
-        imageWidth: 120
-        imageHeight: 120
-        imageTitle: "my image"
-        buttons:
-          - name: "Posts"
-            url: "posts"
-          - name: "Tags"
-            url: "tags"
-
-      homeInfoParams:
-        Title: "👋 Welcome to Aster's blog"
-        Content: "Hi, I'm Aster, a backend engineer passionate about distributed systems, database architecture, and real-time communication technologies. This blog documents my journey through complex technical challenges and solutions in areas like WebRTC, distributed computing, high-performance systems, and modern backend architectures. Here you'll find in-depth technical analysis, system design insights, and practical solutions to real-world engineering problems."
-
-      socialIcons:
-        - name: github
-          url: "https://github.com/AsterZephyr"
-        - name: email
-          url: "mailto:hxz2046084122@outlook.com"
-        - name: x
-          url: "https://x.com/maribeth10770"
-
-      analytics:
-        google:
-          SiteVerificationTag: "XYZabc"
-        bing:
-          SiteVerificationTag: "XYZabc"
-        yandex:
-          SiteVerificationTag: "XYZabc"
-
-      cover:
-        hidden: true
-        hiddenInList: true
-        hiddenInSingle: true
-
-      # Enable Fuse.js Search
-      fuseOpts:
-        isCaseSensitive: false
-        shouldSort: true
-        location: 0
-        distance: 1000
-        threshold: 0.4
-        minMatchCharLength: 0
-        limit: 10
-        keys: ["title", "permalink", "summary", "content"]
-
-      contact:
-        email: "hxz2046084122@outlook.com"
-
-    # ──────────────────────────────────────────────────────────────────────────
-    # Navigation Menu
-    # ──────────────────────────────────────────────────────────────────────────
-    menu:
-      main:
-        - name: Archive
-          url: /archives/
-          weight: 5
-        - name: Search
-          url: /en/search/
-          weight: 10
-        - identifier: tags
-          name: Tags
-          url: /tags/
-          weight: 20
-
-    # ──────────────────────────────────────────────────────────────────────────
-    # Code Highlighting
-    # ──────────────────────────────────────────────────────────────────────────
-    # pygmentsUseClasses: true
-    # markup:
-    #   highlight:
-    #     noClasses: false
-    #     style: "monokai"
-    #     # lineNos: true   # Uncomment to enable line numbers
-
-    
-
-# ──────────────────────────────────────────────────────────────────────────────
-# Global Configuration (if any additional global settings are needed)
-# ──────────────────────────────────────────────────────────────────────────────
 
 enableInlineShortcodes: true
 enableRobotsTXT: true
@@ -384,4 +117,82 @@ buildFuture: false
 buildExpired: false
 enableEmoji: true
 pygmentsUseClasses: true
-mainsections: ["posts", "papermod"]
+mainsections: ["posts"]
+
+# ──────────────────────────────────────────────────────────────────────────────
+# PaperMod Parameters
+# ──────────────────────────────────────────────────────────────────────────────
+params:
+  math: true
+  env: production
+  title: "Aster 的技术博客"
+  description: "专注于分布式系统、数据库、网络和后端架构的技术博客"
+  keywords: [博客, 后端, 技术, 分布式系统]
+
+  author: "Aster"
+
+  DateFormat: "2006-01-02"
+  ShowLastMod: true
+  ShowLastModInList: true
+
+  defaultTheme: auto
+  disableThemeToggle: false
+
+  ShowReadingTime: true
+  ShowWordCount: true
+  ShowShareButtons: true
+  ShowPostNavLinks: true
+  ShowBreadCrumbs: true
+  ShowCodeCopyButtons: true
+  ShowRssButtonInSectionTermList: true
+  UseHugoToc: true
+  showtoc: true
+  tocopen: false
+  disableSpecial1stPost: false
+  disableScrollToTop: false
+  comments: true
+  hidemeta: false
+  hideSummary: false
+
+  homeInfoParams:
+    Title: "👋 欢迎访问我的博客"
+    Content: "你好，我是Aster，一名专注于分布式系统、数据库架构和实时通信技术的后端工程师。这个博客记录了我在复杂技术挑战和解决方案方面的旅程，涵盖WebRTC、分布式计算、高性能系统和现代后端架构等领域。在这里你会找到深入的技术分析、系统设计见解以及实际工程问题的解决方案。"
+
+  socialIcons:
+    - name: github
+      url: "https://github.com/AsterZephyr"
+    - name: email
+      url: "mailto:hxz2046084122@outlook.com"
+    - name: x
+      url: "https://x.com/maribeth10770"
+
+  cover:
+    hidden: true
+    hiddenInList: true
+    hiddenInSingle: true
+
+  fuseOpts:
+    isCaseSensitive: false
+    shouldSort: true
+    location: 0
+    distance: 1000
+    threshold: 0.4
+    minMatchCharLength: 0
+    limit: 10
+    keys: ["title", "permalink", "summary", "content"]
+
+# ──────────────────────────────────────────────────────────────────────────────
+# Navigation Menu
+# ──────────────────────────────────────────────────────────────────────────────
+menu:
+  main:
+    - name: 归档
+      url: /archives/
+      weight: 5
+    - name: 搜索
+      url: /search/
+      weight: 10
+    - identifier: tags
+      name: 标签
+      url: /tags/
+      weight: 20
