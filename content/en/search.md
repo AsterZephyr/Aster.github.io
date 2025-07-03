@@ -2,6 +2,7 @@
 title: "Search"
 placeholder: "Search ↵"
 layout: "search"
-# url: "/search/"
+url: "/en/search/"
+slug: "en-search"
 summary: "Search the site"
 ---
