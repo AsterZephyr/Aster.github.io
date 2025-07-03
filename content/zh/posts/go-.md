@@ -1,0 +1,187 @@
+---
+title: "Go图片数据库压缩"
+date: 2025-07-02T14:25:24Z
+draft: false
+tags: ["数据库", "存储", "Go语言", "性能优化", "高并发"]
+author: "Aster"
+description: "Created: 2024年12月30日 00:17..."
+---
+
+# Go图片数据库压缩
+
+Created: 2024年12月30日 00:17
+Status: 完成
+
+### 主要需求：
+
+- 实现图片上传后的压缩功能
+- 支持自定义压缩程度
+- 追求尽量无损的压缩效果
+
+### github.com/nfnt/resize
+
+### 优势
+
+- 使用简单，API友好
+- 纯Go实现，无需外部依赖
+- 支持多种插值算法
+- 内存占用相对较低
+- 适合基础的图片缩放需求
+
+### 劣势
+
+- 仅支持基础的缩放功能
+- 性能相对较慢（纯Go实现）
+- 很久没有更新维护
+- 不支持高级的压缩优化
+- 不支持批量处理
+
+### 适用场景
+
+- 简单的图片缩放需求
+- 对外部依赖要求严格的环境
+- 小规模图片处理
+- 对性能要求不高的场景
+
+github.com/h2non/bimg
+
+### 优势
+
+- 基于libvips实现，性能极高（处理速度比其他库快 10-500 倍）
+- 内存使用效率高（比其他库节省约 80% 内存）
+- 支持丰富的图片处理功能：
+    - 调整大小
+    - 旋转
+    - 压缩
+    - 裁剪
+    - 水印
+    - 格式转换
+    - 锐化
+    - 模糊等
+- 支持多种图片格式（JPEG, PNG, WEBP, AVIF, TIFF, GIF）
+- 支持批量处理
+- 积极维护中
+
+### 劣势
+
+- 需要安装libvips依赖（>=8.3）
+- 部署环境要求较高（使用MSYS2/vcpkg安装）:
+
+在部署前，还要检查以下问题：
+
+- libvips版本 >= 8.3
+- CGO_ENABLED=1
+- pkg-config 正确配置
+- 系统依赖库完整性
+- 文件系统权限
+- 内存限制配置
+- API相对复杂
+- 配置和使用有一定门槛
+
+### 适用场景
+
+- 大规模图片处理
+- 对性能要求高的场景
+- 需要复杂图片处理功能的场景
+- 企业级应用
+
+### demo：
+
+```
+基本图片压缩
+package main
+
+import ("github.com/h2non/bimg""io/ioutil""log")
+
+func main() {// 读取图片
+    buffer, err := ioutil.ReadFile("input.jpg")if err != nil {
+        log.Fatal(err)}// 创建图片处理对象img := bimg.NewImage(buffer)// 压缩配置processOptions := bimg.Options{Quality:     85,        // JPEG质量Compression: 6,         // PNG压缩级别Type:        bimg.JPEG, // 输出格式}// 处理图片
+    newImage, err := img.Process(processOptions)if err != nil {
+        log.Fatal(err)}// 保存结果if err := ioutil.WriteFile("output.jpg", newImage, 0644); err != nil {
+        log.Fatal(err)}}
+3.2 高级图片处理示例
+goCopy code
+package main
+
+import ("github.com/h2non/bimg""log")
+
+type ImageProcessor struct {
+    quality     int
+    compression int
+    format      bimg.ImageType
+}
+
+func NewImageProcessor(quality int) *ImageProcessor {return &ImageProcessor{quality:     quality,compression: 6,format:      bimg.JPEG,}}func (p *ImageProcessor) Process(input []byte) ([]byte, error) {// 创建图片处理对象img := bimg.NewImage(input)// 获取原图信息
+    size, err := img.Size()if err != nil {return nil, err
+    }// 计算新尺寸（保持纵横比）width := size.Width
+    height := size.Height
+    if width > 1920 {ratio := float64(1920) / float64(width)
+        width = 1920
+        height = int(float64(height) * ratio)}// 处理选项options := bimg.Options{Quality:     p.quality,Width:       width,Height:      height,Compression: p.compression,Type:        p.format,NoProfile:   true,        // 移除颜色配置文件Strip:       true,        // 移除元数据Interlace:   true,        // 渐进式加载}return img.Process(options)}
+性能优化配置
+
+并发处理配置
+goCopy code
+func ProcessImagesInParallel(files []string, processor *ImageProcessor) error {workers := runtime.NumCPU()jobs := make(chan string, len(files))results := make(chan error, len(files))// 启动工作协程for w := 0; w < workers; w++ {
+        go func() {for file := range jobs {
+                input, err := ioutil.ReadFile(file)if err != nil {
+                    results <- err
+                    continue}
+
+                processed, err := processor.Process(input)if err != nil {
+                    results <- err
+                    continue}
+
+                err = ioutil.WriteFile("processed_"+file,
+                    processed,
+                    0644,)
+                results <- err
+            }}()}// 发送任务for _, file := range files {
+        jobs <- file
+    }close(jobs)// 收集结果for range files {if err := <-results; err != nil {return err
+        }}return nil
+}
+4.2 内存使用优化
+goCopy code
+func (p *ImageProcessor) ProcessLargeImage(input []byte) ([]byte, error) {// 设置最大内存限制
+    bimg.VipsMemorySetMax(500 * 1024 * 1024) // 500MB// 启用内存追踪
+    bimg.VipsMemorySetTrace(true)img := bimg.NewImage(input)// 分步处理以减少内存使用// 1. 先调整大小
+    resized, err := img.Process(bimg.Options{Width:  1920,Height: 0, // 自动计算})if err != nil {return nil, err
+    }// 2. 然后压缩return bimg.NewImage(resized).Process(bimg.Options{Quality:     p.quality,Type:        p.format,NoProfile:   true,Strip:       true,})}
+
+```
+
+### 2.3 github.com/disintegration/imaging
+
+### 优势
+
+- 纯Go实现，无外部依赖
+- API设计简洁友好
+- 功能相对完整：
+    - 调整大小
+    - 裁剪
+    - 旋转
+    - 翻转
+    - 亮度/对比度调整
+    - 锐化/模糊
+- 持续维护中
+- 代码质量高，文档完善
+
+### 劣势
+
+- 性能一般（比bimg慢）
+- 内存占用较大
+- 不支持某些高级特性（如WEBP, AVIF格式）
+- 批量处理性能不佳
+
+### 适用场景
+
+- 中小规模图片处理
+- 需要平衡功能和易用性的场景
+- 开发环境受限，无法安装外部依赖
+
+### 对代码可维护性要求高的项目
+
+### 最终由于bimg需要本地搭建c++环境 选择resize包
+
+### 接口位置：common\image
